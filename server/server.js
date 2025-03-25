@@ -43,6 +43,7 @@ const sendVarUpdates = async (socket) => {
         lastTimestamp = newTimestamp;
         const [tableData] = await db.query(
           "SELECT * FROM value_at_risk WHERE calculation_time >= (CASE WHEN TIME(NOW()) >= '08:30:00' THEN DATE(NOW()) + INTERVAL 8 HOUR + INTERVAL 30 MINUTE ELSE DATE(NOW() - INTERVAL 1 DAY) + INTERVAL 8 HOUR + INTERVAL 30 MINUTE END) ORDER BY calculation_time;"
+          //"SELECT * FROM value_at_risk WHERE DATE(calculation_time) = '2025-03-20';"
         );
         io.emit("updateTable", tableData); // Broadcast update
       }
