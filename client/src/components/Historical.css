@@ -1,42 +1,42 @@
-.montecarlo-container {
+.historical-container {
   display: flex;
 }
 
-.montecarlo-left-section {
+.historical-left-section {
   width: 75%;
 }
 
-.montecarlo-right-section {
+.historical-right-section {
   width: 25%;
   overflow-y: auto;
   height: 280px;
 }
 
-.montecarlo-table {
+.historical-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: auto;
   font-size: 12px;
 }
 
-.montecarlo-table th,
-.montecarlo-table td {
+.historical-table th,
+.historical-table td {
   padding: 8px;
   border: 1px solid #ddd;
   text-align: left;
 }
 
-.montecarlo-table th {
+.historical-table th {
   background-color: #f1f1f1;
   font-weight: bold;
 }
 
-.montecarlo-table th:first-child,
-.montecarlo-table td:first-child {
+.historical-table th:first-child,
+.historical-table td:first-child {
   width: 150px;
 }
 
-.montecarlo-warning-row {
+.historical-warning-row {
   background-color: red;
   color: white;
 }

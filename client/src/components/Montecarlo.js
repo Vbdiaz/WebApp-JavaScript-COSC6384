@@ -9,49 +9,62 @@ import './Montecarlo.css';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const socket = io("http://localhost:5000");
+const socketMonteCarlo = io("http://localhost:5000/montecarlo");
 
 function Montecarlo() {
     const [tableData, setTableData] = useState([]);
+    const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
-        socket.on("updateTable", (data) => {
+        socketMonteCarlo.on("updateMontecarlo", (data) => {
             console.log("Received table data:", data);
 
             // Convert MySQL UTC timestamp to Houston time
             const convertedData = data.map(item => ({
                 ...item,
-                calculation_time: dayjs.utc(item.calculation_time).tz("America/Chicago").format("YYYY-MM-DD HH:mm:ss")
+                calculation_time: dayjs.utc(item.calculation_time).tz("America/Chicago").format("YYYY-MM-DD HH:mm:ss"),
+                threshold_line: item.portfolio_value * item.percent_threshold
             }));
 
             setTableData(convertedData);
+            // Sort the data by calculation_time in ascending order for the chart
+            const sortedChartData = [...convertedData].sort((a, b) => dayjs(a.calculation_time).isBefore(dayjs(b.calculation_time)) ? -1 : 1);
+
+            // Set the sorted data for the chart (ascending order)
+            setChartData(sortedChartData);
         });
 
         return () => {
-            socket.disconnect();
+            socketMonteCarlo.disconnect();
         };
     }, []);
 
     return (
         <div>
-            <h1>Monte Carlo VaR</h1>
+            <h1>Monte Carlo Method VaR</h1>
             <div className="montecarlo-container">
-                <div className="left-section">
+                <div className="montecarlo-left-section">
                     <ResponsiveContainer width="100%" height={300}>
-                        <LineChart width={500} height={300} data={tableData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                        <LineChart
+                            width={500}
+                            height={300}
+                            data={chartData}
+                            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                        >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis 
-                                dataKey="calculation_time" 
-                                tickFormatter={(tick) => dayjs(tick).format("HH:mm:ss")} 
+                            <XAxis
+                                dataKey="calculation_time"
+                                tickFormatter={(tick) => dayjs(tick).format("HH:mm:ss")}
                             />
                             <YAxis domain={['dataMin - 100', 'dataMax + 100']} />
                             <Tooltip />
                             <Line type="monotone" dataKey="var_value" stroke="#82ca9d" dot={false} />
+                            <Line type="monotone" dataKey="threshold_line" stroke="#ff4d4f" strokeDasharray={"5 5"} dot={false}/>
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="right-section">
-                    <table className="data-table">
+                <div className="montecarlo-right-section">
+                    <table className="montecarlo-table">
                         <thead>
                             <tr>
                             <th>Date</th>
@@ -66,7 +79,7 @@ function Montecarlo() {
                             {tableData.map((item, index) => (
                                   <tr
                                   key={index}
-                                  className={item.warning === 1 ? 'warning-row' : ''} // Apply the 'warning-row' class if warning is 1
+                                  className={item.warning === 1 ? 'montecarlo-warning-row' : ''} // Apply the 'warning-row' class if warning is 1
                                 >
                                 <td>{item.time_only}</td>
                                 <td>{item.portfolio_value}</td>

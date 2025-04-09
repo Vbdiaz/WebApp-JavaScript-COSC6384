@@ -1,42 +1,47 @@
-.montecarlo-container {
+.portfolio-container {
   display: flex;
 }
 
-.montecarlo-left-section {
+.portfolio-left-section {
   width: 75%;
 }
 
-.montecarlo-right-section {
+.portfolio-right-section {
   width: 25%;
   overflow-y: auto;
   height: 280px;
 }
 
-.montecarlo-table {
+.portfolio-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: auto;
   font-size: 12px;
 }
 
-.montecarlo-table th,
-.montecarlo-table td {
+.portfolio-table th,
+.portfolio-table td {
   padding: 8px;
   border: 1px solid #ddd;
   text-align: left;
 }
 
-.montecarlo-table th {
+.portfolio-table th {
   background-color: #f1f1f1;
   font-weight: bold;
 }
 
-.montecarlo-table th:first-child,
-.montecarlo-table td:first-child {
+.portfolio-table th:first-child,
+.portfolio-table td:first-child {
   width: 150px;
 }
 
-.montecarlo-warning-row {
+.portfolio-warning-row-down {
   background-color: red;
+  color: white;
+}
+
+.portfolio-warning-row-up {
+  background-color: green;
   color: white;
 }
