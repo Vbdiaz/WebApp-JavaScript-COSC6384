@@ -10,7 +10,7 @@ dayjs.extend(timezone);
 
 const socket = io("http://localhost:5000");
 
-function VarChart() {
+function Porfolio() {
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
@@ -33,7 +33,6 @@ function VarChart() {
 
     return (
         <div>
-            <h2>Dow Jones Industrial Average</h2>
             <ResponsiveContainer width="100%" height={400}>
                 <LineChart width={500} height={300} data={tableData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -46,20 +45,8 @@ function VarChart() {
                     <Line type="monotone" dataKey="portfolio_value" stroke="#82ca9d" dot={false} />
                 </LineChart>
             </ResponsiveContainer>
-            <ResponsiveContainer width="100%" height={400}>
-                <LineChart width={500} height={300} data={tableData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis 
-                        dataKey="calculation_time" 
-                        tickFormatter={(tick) => dayjs(tick).format("HH:mm:ss")} 
-                    />
-                    <YAxis domain={['dataMin - 100', 'dataMax + 100']} />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="var_value" stroke="#82ca9d" dot={false} />
-                </LineChart>
-            </ResponsiveContainer>
         </div>
     );
 }
 
-export default VarChart;
+export default Porfolio;

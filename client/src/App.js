@@ -1,10 +1,14 @@
 import React from "react";
-import VarChart from "./components/VarChart";
+import Montecarlo from "./components/Montecarlo";
+import Porfolio from "./components/Portfolio";
 
 function App() {
 
     return (
-        <VarChart/>
+        <>
+            <Montecarlo />
+            <Porfolio />
+        </>
     );
 }
 

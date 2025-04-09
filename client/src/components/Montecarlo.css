@@ -1,0 +1,43 @@
+/* Montecarlo.css */
+.montecarlo-container {
+    display: flex;
+  }
+  
+  .left-section {
+    width: 75%; /* 3/4 */
+  }
+  
+  .right-section {
+    width: 25%; /* 1/4 */
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 280px;
+  }
+  table {
+    width: 100%; /* Make the table take up the full width of the container */
+    border-collapse: collapse;
+    table-layout: auto; /* Allow columns to adjust based on content */
+    font-size: 12px; /* Smaller font size */
+
+  }
+  
+  table th, table td {
+    padding: 8px;
+    border: 1px solid #ddd; /* Add borders for table cells */
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  /* Optional: adjust the width of the first column (calculation_time) */
+  table th:first-child,
+  table td:first-child {
+    width: 150px; /* Adjust the width of the first column as needed */
+  }
+  .warning-row {
+    background-color: red;
+    color: white;  /* Optionally set text color to white for better contrast */
+  }
+  
