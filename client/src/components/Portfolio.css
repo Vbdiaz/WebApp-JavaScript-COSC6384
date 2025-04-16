@@ -45,3 +45,30 @@
   background-color: green;
   color: white;
 }
+
+.portfolio-warning-row-stay {
+  background-color: white;
+  color: black;
+}
+
+.form-container {
+  bottom: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.trade-response,
+.operation-duration {
+  margin-top: 10px;
+}

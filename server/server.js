@@ -10,6 +10,8 @@ app.get("/api", (req, res) => {
   res.json({ users: ["userone", "usertwo", "userthree", "userfour"] });
 });
 
+
+
 const io = new Server(server, {
   cors: {
     origin: ["http://localhost:3000"],

@@ -69,6 +69,7 @@ function Historical() {
                             <tr>
                             <th>Date</th>
                             <th>Portfolio Value</th>
+                            <th>Expected Shortfall</th>
                             <th>Value at Risk</th>
                             <th>% at Risk</th>
                             <th>% Threshold</th>
@@ -83,6 +84,7 @@ function Historical() {
                                 >
                                 <td>{item.time_only}</td>
                                 <td>{item.portfolio_value}</td>
+                                <td>{item.es_value}</td>
                                 <td>{item.var_value}</td>
                                 <td>{item.percent_at_risk}</td>
                                 <td>{item.percent_threshold}</td>
